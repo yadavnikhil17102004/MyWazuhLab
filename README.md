@@ -10,10 +10,10 @@ The objective is to build a multi-machine virtual lab that simulates and defends
 
 The lab is built using VMware VMs and includes the following components:
 
-- Wazuh Server: Runs the central Wazuh Manager, Indexer, and Dashboard.
+- **Wazuh Server**: Runs the central Wazuh Manager, Indexer, and Dashboard.
               Collects and correlates logs from agents, Suricata, and pfSense.
-- Windows Endpoint (Windows 11 Pro):Runs the Wazuh Agent for system monitoring and log forwarding.
-- Attacker Machine (Kali Linux):instance used to simulate threats.
-- pfSense Firewall:Provides firewall logs.
+- **Windows Endpoint (Windows 11 Pro)**:Runs the Wazuh Agent for system monitoring and log forwarding.
+- **Attacker Machine (Kali Linux)**:instance used to simulate threats.
+- **pfSense Firewall**:Provides firewall logs.
                  Integrated into Wazuh for anomaly detection.
-- Suricata IDS/IPS: Monitors network traffic, Sends IDS alerts to Wazuh.
+- **Suricata IDS/IPS**: Monitors network traffic, Sends IDS alerts to Wazuh.
