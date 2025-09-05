@@ -18,11 +18,35 @@ The lab is built using VMware VMs and includes the following components:
                  Integrated into Wazuh for anomaly detection.
 - **Suricata IDS/IPS**: Monitors network traffic, Sends IDS alerts to Wazuh.
 
-# 🛠️ Wazuh Setup
+# 🛠️ Wazuh Setup:
 
-[Step 1. Wazuh Server & Agent setup📄 PDF Guide](docs/Wazuh Setup & Configuration.pdf)
+[Step 1. Wazuh Server & Agent setup📄 PDF Guide](docs/Wazuh_Setup&Configuration.pdf)
 
 **Summary:**
 - Deploy Wazuh in a virtualized environment using the official OVA package.
 - Configure and troubleshoot Wazuh services, then access the Dashboard for monitoring.
 - Install and register endpoint agents to collect logs and centralize security visibility.
+
+# 🔌 Implementaion & Configuration:
+
+[Suricata Integration 📄 PDF Guide](docs/Suricata_integration.pdf)
+
+**Summary:**
+-Use IDS for passive detection and IPS for active blocking of threats.
+-Install and configure Suricata on Windows with Npcap and detection rules.
+-Integrate Suricata logs with Wazuh to centralize monitoring and alerts.
+
+[pfSense Integration 📄 PDF Guide](docs/Pfsense_integration.pdf)
+
+**Summary:**
+-Deploy pfSense as a virtual firewall in VMware to control and monitor network traffic.
+-Configure remote logging and forward pfSense events into Wazuh for analysis.
+-Create custom decoders and rules in Wazuh to detect allowed, blocked, and authentication events.
+
+[VirusTotal Integration 📄 PDF Guide](docs/VirusTotal_integration.pdf)
+
+**Summary:**
+-Obtain a VirusTotal API key and configure it in the Wazuh Manager for integration.
+-Set up Wazuh agents to monitor directories in real time and trigger VirusTotal lookups.
+-Enrich alerts with VirusTotal reputation data to speed up triage and threat analysis.
+
