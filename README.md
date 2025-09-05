@@ -17,3 +17,12 @@ The lab is built using VMware VMs and includes the following components:
 - **pfSense Firewall**:Provides firewall logs.
                  Integrated into Wazuh for anomaly detection.
 - **Suricata IDS/IPS**: Monitors network traffic, Sends IDS alerts to Wazuh.
+
+# 🛠️ Wazuh Setup
+
+[Step 1. Wazuh Server & Agent setup📄 PDF Guide](docs/Wazuh Setup & Configuration.pdf)
+
+**Summary:**
+- Deploy Wazuh in a virtualized environment using the official OVA package.
+- Configure and troubleshoot Wazuh services, then access the Dashboard for monitoring.
+- Install and register endpoint agents to collect logs and centralize security visibility.
