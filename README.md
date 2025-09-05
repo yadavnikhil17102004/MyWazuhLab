@@ -32,21 +32,34 @@ The lab is built using VMware VMs and includes the following components:
 [Suricata Integration 📄 PDF Guide](docs/Suricata_integration.pdf)
 
 **Summary:**
--Use IDS for passive detection and IPS for active blocking of threats.
--Install and configure Suricata on Windows with Npcap and detection rules.
--Integrate Suricata logs with Wazuh to centralize monitoring and alerts.
+- Use IDS for passive detection and IPS for active blocking of threats.
+- Install and configure Suricata on Windows with Npcap and detection rules.
+- Integrate Suricata logs with Wazuh to centralize monitoring and alerts.
 
 [pfSense Integration 📄 PDF Guide](docs/Pfsense_integration.pdf)
 
 **Summary:**
--Deploy pfSense as a virtual firewall in VMware to control and monitor network traffic.
--Configure remote logging and forward pfSense events into Wazuh for analysis.
--Create custom decoders and rules in Wazuh to detect allowed, blocked, and authentication events.
+- Deploy pfSense as a virtual firewall in VMware to control and monitor network traffic.
+- Configure remote logging and forward pfSense events into Wazuh for analysis.
+- Create custom decoders and rules in Wazuh to detect allowed, blocked, and authentication events.
 
 [VirusTotal Integration 📄 PDF Guide](docs/VirusTotal_integration.pdf)
 
 **Summary:**
--Obtain a VirusTotal API key and configure it in the Wazuh Manager for integration.
--Set up Wazuh agents to monitor directories in real time and trigger VirusTotal lookups.
--Enrich alerts with VirusTotal reputation data to speed up triage and threat analysis.
+- Obtain a VirusTotal API key and configure it in the Wazuh Manager for integration.
+- Set up Wazuh agents to monitor directories in real time and trigger VirusTotal lookups.
+- Enrich alerts with VirusTotal reputation data to speed up triage and threat analysis.
 
+[File integrity monitoring 📄 PDF Guide](docs/File_integrity_monitoring.pdf)
+
+**Summary:**
+- Configure Wazuh File Integrity Monitoring (FIM) on Windows by defining directories in the agent’s ossec.conf.
+- Enable real-time monitoring with recursion and change reporting for files and subdirectories.
+- Validate by creating, modifying, and deleting files to confirm Wazuh generates alerts for each action.
+
+[Logs & Sysmon ingestion 📄 PDF Guide](docs/Logs&Sysmon_ingestion.pdf)
+
+**Summary:**
+- Understand Windows Event Logs, key categories, and critical Event IDs for visibility into system and security activities.
+- Deploy Sysmon to capture detailed system events and enhance detection of suspicious or attacker behavior.
+- Ingest Sysmon logs into Wazuh for centralized monitoring, correlation, and custom rule-based threat detection.
