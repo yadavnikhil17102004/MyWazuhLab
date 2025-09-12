@@ -63,3 +63,14 @@ The lab is built using VMware VMs and includes the following components:
 - Understand Windows Event Logs, key categories, and critical Event IDs for visibility into system and security activities.
 - Deploy Sysmon to capture detailed system events and enhance detection of suspicious or attacker behavior.
 - Ingest Sysmon logs into Wazuh for centralized monitoring, correlation, and custom rule-based threat detection.
+
+# 🔐 Brute Force Attack: Simulation, Detection & Defense:
+
+[Brute Force Attack Simulation & Wazuh Investigation 📄 PDF Guide](docs/SSH_Brute_Force.pdf)
+
+**Summary:**
+- Simulate an SSH brute force attack in a controlled lab using Hydra to generate repeated failed login attempts.
+- Detect malicious activity in Wazuh through alerts, Windows Event Logs (e.g., Event ID 4625), and correlation rules highlighting authentication failures.
+- Apply defensive measures such as strong passwords, MFA, account lockouts, and Wazuh active responses to prevent and mitigate brute force threats.
+
+**Important:** perform these activities only in your isolated lab environment (the VMs described above) or on systems you own/are authorized to test. Never run brute-force activity against third-party or production systems.
