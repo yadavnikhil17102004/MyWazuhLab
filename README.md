@@ -74,3 +74,13 @@ The lab is built using VMware VMs and includes the following components:
 - Apply defensive measures such as strong passwords, MFA, account lockouts, and Wazuh active responses to prevent and mitigate brute force threats.
 
 **Important:** perform these activities only in your isolated lab environment (the VMs described above) or on systems you own/are authorized to test. Never run brute-force activity against third-party or production systems.
+
+# Conclusion
+This project demonstrates how to:
+
+- Build and configure a complete cybersecurity home lab using Wazuh
+- Simulate real-world attack scenarios such as brute force attempts
+- Detect, investigate, and respond to threats by integrating Wazuh with Suricata, pfSense, Sysmon, VirusTotal, and File Integrity Monitoring.
+- Gain practical SOC experience by centralizing logs, applying detection rules
+**Note:** This is for educational purposes only. Do not use these techniques for unauthorized activities.
+
