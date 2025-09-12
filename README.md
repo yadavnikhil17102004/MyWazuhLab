@@ -82,5 +82,7 @@ This project demonstrates how to:
 - Simulate real-world attack scenarios such as brute force attempts
 - Detect, investigate, and respond to threats by integrating Wazuh with Suricata, pfSense, Sysmon, VirusTotal, and File Integrity Monitoring.
 - Gain practical SOC experience by centralizing logs, applying detection rules
+  
 **Note:** This is for educational purposes only. Do not use these techniques for unauthorized activities.
+
 
