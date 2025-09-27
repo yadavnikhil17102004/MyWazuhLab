@@ -1,10 +1,9 @@
 # Wazuh-SOC-Lab
-Welcome to my Wazuh SOC Lab repository!
-This project documents my journey of deploying, configuring, and mastering a Security Operations Center (SOC) using the open-source Wazuh SIEM/XDR platform.
+Welcome to my Wazuh SOC Lab repository! 
+This project documents my journey of deploying, configuring, and implementing different security tools.
 
 # 📌Overview
-This project demonstrates the end-to-end deployment and configuration of a comprehensive Security Operations Center (SOC) using the open-source Wazuh SIEM/XDR platform.
-The objective is to build a multi-machine virtual lab that simulates and defends against real-world security threats. 
+This project demonstrates the end-to-end deployment and configuration of different security tools using the open-source Wazuh SIEM/XDR platform, Suricata IDS and Pfsense firewall.
 
 # 🏗️Lab Architecture
 
