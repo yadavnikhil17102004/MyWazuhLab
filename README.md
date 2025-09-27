@@ -19,7 +19,7 @@ The lab is built using VMware VMs and includes the following components:
 
 # 🛠️ Wazuh Setup:
 
-[Step 1. Wazuh Server & Agent setup📄 PDF Guide](docs/Wazuh_Setup&Configuration.pdf)
+[Step 1. Wazuh Server & Agent setup📄 PDF Guide](docs/Wazuh_configuration.pdf)
 
 **Summary:**
 - Deploy Wazuh in a virtualized environment using the official OVA package.
@@ -75,12 +75,7 @@ The lab is built using VMware VMs and includes the following components:
 **Important:** perform these activities only in your isolated lab environment (the VMs described above) or on systems you own/are authorized to test. Never run brute-force activity against third-party or production systems.
 
 # Conclusion
-This project demonstrates how to:
-
-- Build and configure a complete cybersecurity home lab using Wazuh
-- Simulate real-world attack scenarios such as brute force attempts
-- Detect, investigate, and respond to threats by integrating Wazuh with Suricata, pfSense, Sysmon, VirusTotal, and File Integrity Monitoring.
-- Gain practical SOC experience by centralizing logs, applying detection rules
+his SOC home lab project successfully demonstrated how open-source tools can be combined to build a functional security monitoring and detection environment. By integrating Wazuh as the central **SIEM**, **pfSense** as the firewall, **Suricata** as the IDS/IPS, and **Sysmon** for endpoint visibility, the lab replicated key components of a modern SOC. The addition of **VirusTotal** enrichment and **File Integrity Monitoring** further enhanced detection capabilities and contextual analysis.
   
 **Note:** This is for educational purposes only. Do not use these techniques for unauthorized activities.
 
