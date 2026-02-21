@@ -1,94 +1,63 @@
-# Wazuh-SOC-Lab
-Welcome to my Wazuh SOC Lab repository! 
-This project documents my journey of deploying, configuring, and implementing different security tools.
+# 🛡️ Enterprise SOC Intelligence Lab (Wazuh/pfSense/Suricata)
 
-# 📌Overview
-This project demonstrates the end-to-end deployment and configuration of different security tools using the open-source Wazuh SIEM/XDR platform, Suricata IDS and Pfsense firewall.
+> _End-to-End deployment of a hyper-integrated Detection & Response architecture._
 
-# 🏗️Lab Architecture
+## ⚡ What is this?
 
-The lab is built using VMware VMs and includes the following components:
+A fully weaponized, virtualized Security Operations Center (SOC) environment built to simulate, detect, and neutralize advanced persistent threats. This lab integrates an open-source XDR (Wazuh) with network-level deep packet inspection (Suricata) and firewalling (pfSense) to create a comprehensive perimeter of absolute visibility.
 
-- **Wazuh Server**: Runs the central Wazuh Manager, Indexer, and Dashboard.
-              Collects and correlates logs from agents, Suricata, and pfSense.
-- **Windows Endpoint (Windows 11 Pro)**:Runs the Wazuh Agent for system monitoring and log forwarding.
-- **Attacker Machine (Kali Linux)**:instance used to simulate threats.
-- **pfSense Firewall**:Provides firewall logs.
-                 Integrated into Wazuh for anomaly detection.
-- **Suricata IDS/IPS**: Monitors network traffic, Sends IDS alerts to Wazuh.
+**Why?** Because reading about security isn't enough. You have to build the panopticon to understand how to break it (or defend it).
 
-![Lab Architecture](Lab_architecture.png)
+## 🏗 Architecture Blueprint
 
-*Figure 1: SOC Lab Architecture.*
+The environment operates entirely within isolated VMware infrastructure to emulate an enterprise corporate network under active simulation.
 
-# 🛠️ Wazuh Setup:
+1. **Wazuh Central Hub:** The brain. Manages the Indexer, Server, and Dashboard. Ingests and correlates all endpoint and network telemetry.
+2. **Windows 11 Client:** The sacrificial endpoint. Instrumented with Wazuh Agent and Sysmon for ring-0 telemetry.
+3. **Kali Linux:** The aggressor. Dedicated attack infrastructure used to fire exploits and brute-force campaigns into the perimeter.
+4. **pfSense Edge Firewall:** The gatekeeper. Controls ingress/egress and forwards structural traffic anomalies directly into Wazuh.
+5. **Suricata IDS/IPS:** The wire-tap. Passively monitors deep packet traffic and fires high-fidelity signatures to the centralized SIEM.
 
-[Step 1. Wazuh Server & Agent setup📄 PDF Guide](docs/Wazuh_configuration.pdf)
+![Lab Architecture Blueprint](Lab_architecture.png)
 
-**Summary:**
-- Deploy Wazuh in a virtualized environment using the official OVA package.
-- Configure and troubleshoot Wazuh services, then access the Dashboard for monitoring.
-- Install and register endpoint agents to collect logs and centralize security visibility.
+## 📡 Operational Capabilities
 
-# 🔌 Implementaion & Configuration:
+This SOC implementation isn't just a logging sink; it actively leverages multiple threat intelligence streams to formulate a layered defense.
 
-[Suricata Integration 📄 PDF Guide](docs/Suricata_integration.pdf)
+### 1. File Integrity & Reputation (VirusTotal)
 
-**Summary:**
-- Use IDS for passive detection and IPS for active blocking of threats.
-- Install and configure Suricata on Windows with Npcap and detection rules.
-- Integrate Suricata logs with Wazuh to centralize monitoring and alerts.
+- Integrates the VirusTotal API directly into the Wazuh Manager to automatically scan suspected binaries dropped on the Windows endpoint.
+- FIM (File Integrity Monitoring) watches critical OS directories and triggers alerts the exact millisecond a file is mutated.
 
-[pfSense Integration 📄 PDF Guide](docs/Pfsense_integration.pdf)
+### 2. Deep Windows Telemetry (Sysmon)
 
-**Summary:**
-- Deploy pfSense as a virtual firewall in VMware to control and monitor network traffic.
-- Configure remote logging and forward pfSense events into Wazuh for analysis.
-- Create custom decoders and rules in Wazuh to detect allowed, blocked, and authentication events.
+- Basic Windows Event Logs aren't enough. Sysmon is deployed to track exact process creation trees, network connections spawned by executables, and file creation hashes.
+- Sysmon logs are pipelined directly into Wazuh for centralized behavioral analysis.
 
-[VirusTotal Integration 📄 PDF Guide](docs/VirusTotal_integration.pdf)
+### 3. Attack Simulation: SSH Brute Force Campaign
 
-**Summary:**
-- Obtain a VirusTotal API key and configure it in the Wazuh Manager for integration.
-- Set up Wazuh agents to monitor directories in real time and trigger VirusTotal lookups.
-- Enrich alerts with VirusTotal reputation data to speed up triage and threat analysis.
+- Simulated sustained Hydra-based brute-force attacks from the Kali aggressor node against the internal infrastructure.
+- Validated real-time alert generation via `Event ID 4625` (Failed Logon) and Wazuh native correlation engines.
+- Actively defended using Active Response automation to outright ban the attacking IPs from the network layer.
 
-[File integrity monitoring 📄 PDF Guide](docs/File_integrity_monitoring.pdf)
+## 📖 Deep-Dive Documentation
 
-**Summary:**
-- Configure Wazuh File Integrity Monitoring (FIM) on Windows by defining directories in the agent’s ossec.conf.
-- Enable real-time monitoring with recursion and change reporting for files and subdirectories.
-- Validate by creating, modifying, and deleting files to confirm Wazuh generates alerts for each action.
+Every single phase of this infrastructure has been meticulously documented. If you want to replicate this setup, the operational manuals are included here:
 
-[Logs & Sysmon ingestion 📄 PDF Guide](docs/Logs&Sysmon_ingestion.pdf)
+- [Wazuh Core Configuration](docs/Wazuh_configuration.pdf)
+- [Suricata IDS Integration](docs/Suricata_integration.pdf)
+- [pfSense Edge Configuration](docs/Pfsense_integration.pdf)
+- [VirusTotal API Enrichment](docs/VirusTotal_integration.pdf)
+- [FIM (File Integrity Monitoring)](docs/File_integrity_monitoring.pdf)
+- [Sysmon & Telemetry Pipeline](docs/Logs&Sysmon_ingestion.pdf)
+- [Active Threat: Brute Force Simulation](docs/SSH_Brute_Force.pdf)
 
-**Summary:**
-- Understand Windows Event Logs, key categories, and critical Event IDs for visibility into system and security activities.
-- Deploy Sysmon to capture detailed system events and enhance detection of suspicious or attacker behavior.
-- Ingest Sysmon logs into Wazuh for centralized monitoring, correlation, and custom rule-based threat detection.
+> **[Download the Master Compilation PDF](docs/Soc_Home_LAB.pdf)**
 
-# 🔐 Brute Force Attack: Simulation, Detection & Defense:
+## ⚠️ Engagement Rules
 
-[Brute Force Attack Simulation & Wazuh Investigation 📄 PDF Guide](docs/SSH_Brute_Force.pdf)
+This environment is a controlled detonation chamber. Ensure all attack simulations map explicitly to authorized infrastructure.
 
-**Summary:**
-- Simulate an SSH brute force attack in a controlled lab using Hydra to generate repeated failed login attempts.
-- Detect malicious activity in Wazuh through alerts, Windows Event Logs (e.g., Event ID 4625), and correlation rules highlighting authentication failures.
-- Apply defensive measures such as strong passwords, MFA, account lockouts, and Wazuh active responses to prevent and mitigate brute force threats.
+---
 
-**Important:** perform these activities only in your isolated lab environment (the VMs described above) or on systems you own/are authorized to test. Never run brute-force activity against third-party or production systems.
-
-# Conclusion
-his SOC home lab project successfully demonstrated how open-source tools can be combined to build a functional security monitoring and detection environment. By integrating **Wazuh** as the central SIEM, **pfSense** as the firewall, **Suricata** as the IDS/IPS, and **Sysmon** for endpoint visibility, the lab replicated key components of a modern SOC. The addition of **VirusTotal** enrichment and **File Integrity Monitoring** further enhanced detection capabilities and contextual analysis.
-
-Through the threat simulation exercise (brute-force attack detection), the lab validated that the system can not only ingest and correlate logs but also generate meaningful alerts. This reflects a realistic analyst workflow: detecting, investigating, and proposing defensive countermeasures.
-
-Beyond technical skills, this project also reinforced critical SOC analyst practices: log analysis, alert triage, rule tuning, and threat hunting queries.
-  
-**Note:** This is for educational purposes only. Do not use these techniques for unauthorized activities.
-
-## 📄 Full Documentation
-You can download the complete SOC Home Lab guide here:  
-[📥 SOC_Home_Lab_Guide.pdf](docs/Soc_Home_LAB.pdf)
-
-
+_Built to detect. Engineered to secure._
