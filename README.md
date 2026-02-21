@@ -63,8 +63,6 @@ The environment operates entirely within isolated VMware infrastructure to emula
 4. **pfSense Edge Firewall:** The gatekeeper. Controls ingress/egress and forwards structural traffic anomalies directly into Wazuh.
 5. **Suricata IDS/IPS:** The wire-tap. Passively monitors deep packet traffic and fires high-fidelity signatures to the centralized SIEM.
 
-![Lab Architecture Blueprint](Lab_architecture.png)
-
 ## 📡 Operational Capabilities
 
 This SOC implementation isn't just a logging sink; it actively leverages multiple threat intelligence streams to formulate a layered defense.
