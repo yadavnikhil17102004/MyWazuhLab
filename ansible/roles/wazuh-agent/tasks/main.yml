@@ -1,0 +1,27 @@
+---
+- name: Check if Wazuh Agent is installed
+  win_service:
+    name: Wazuh
+  register: wazuh_service
+
+- name: Download Wazuh Agent installer
+  win_get_url:
+    url: "https://packages.wazuh.com/4.x/windows/wazuh-agent-4.7.2-1.msi"
+    dest: 'C:\temp\wazuh-agent.msi'
+  when: not wazuh_service.exists
+
+- name: Install Wazuh Agent
+  win_package:
+    path: 'C:\temp\wazuh-agent.msi'
+    arguments:
+      - /q
+      - WAZUH_MANAGER='{{ wazuh_manager_ip }}'
+      - WAZUH_REGISTRATION_SERVER='{{ wazuh_manager_ip }}'
+    state: present
+  when: not wazuh_service.exists
+
+- name: Ensure Wazuh service is running and set to auto
+  win_service:
+    name: Wazuh
+    start_mode: auto
+    state: started

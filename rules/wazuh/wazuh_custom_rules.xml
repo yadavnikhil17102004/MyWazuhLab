@@ -1,0 +1,35 @@
+<!-- Custom Wazuh Rules for Lab Environment -->
+<group name="sysmon,lab_detections,">
+  
+  <!-- Suspicious Process: Discovery -->
+  <rule id="100001" level="7">
+    <if_sid>61603</if_sid>
+    <field name="win.eventdata.image">whoami.exe|nltest.exe|net.exe|hostname.exe</field>
+    <description>Lab: Suspicious Discovery Command Executed (whoami/nltest/net)</description>
+    <mitre>
+      <id>T1033</id>
+      <id>T1016</id>
+    </mitre>
+  </rule>
+
+  <!-- Suspicious Process: Cobalt Strike / Empire Patterns -->
+  <rule id="100002" level="10">
+    <if_sid>61603</if_sid>
+    <field name="win.eventdata.commandLine">powershell -enc|powershell -nop -exec bypass</field>
+    <description>Lab: Possible C2 Stager Detected (Encoded PowerShell)</description>
+    <mitre>
+      <id>T1059.001</id>
+    </mitre>
+  </rule>
+
+  <!-- Persistence: Registry Run Keys -->
+  <rule id="100003" level="8">
+    <if_sid>61615</if_sid>
+    <field name="win.eventdata.targetObject">Software\\Microsoft\\Windows\\CurrentVersion\\Run</field>
+    <description>Lab: Persistence - Registry Run Key Modified</description>
+    <mitre>
+      <id>T1547.001</id>
+    </mitre>
+  </rule>
+
+</group>

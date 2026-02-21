@@ -1,0 +1,8 @@
+---
+- name: Baseline Lab Endpoint Configuration
+  hosts: all
+  gather_facts: yes
+
+  roles:
+    - wazuh-agent
+    - sysmon

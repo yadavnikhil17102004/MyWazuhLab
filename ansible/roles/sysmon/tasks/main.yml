@@ -1,0 +1,34 @@
+---
+- name: Create Sysmon directory
+  win_file:
+    path: 'C:\tools\sysmon'
+    state: directory
+
+- name: Download Sysmon
+  win_get_url:
+    url: "{{ sysmon_binary_url }}"
+    dest: 'C:\tools\sysmon\sysmon.zip'
+
+- name: Unzip Sysmon
+  win_unzip:
+    src: 'C:\tools\sysmon\sysmon.zip'
+    dest: 'C:\tools\sysmon'
+    creates: 'C:\tools\sysmon\Sysmon64.exe'
+
+- name: Download Sysmon configuration
+  win_get_url:
+    url: "{{ sysmon_config_url }}"
+    dest: 'C:\tools\sysmon\config.xml'
+
+- name: Check if Sysmon is installed
+  win_service:
+    name: Sysmon64
+  register: sysmon_service
+
+- name: Install and configure Sysmon
+  win_command: 'C:\tools\sysmon\Sysmon64.exe -i C:\tools\sysmon\config.xml -accepteula'
+  when: not sysmon_service.exists
+
+- name: Update Sysmon configuration
+  win_command: 'C:\tools\sysmon\Sysmon64.exe -c C:\tools\sysmon\config.xml'
+  when: sysmon_service.exists

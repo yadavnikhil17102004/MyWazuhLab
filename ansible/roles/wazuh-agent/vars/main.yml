@@ -1,0 +1,7 @@
+# Default variables for the Wazuh agent role
+wazuh_manager_ip: "10.0.0.2" # Default to your lab manager
+wazuh_agent_auth_password: "" # Optional auth password
+wazuh_agent_config:
+  realtime_directories:
+    - "C:\\Users\\Public\\Downloads"
+    - "C:\\Windows\\Temp"

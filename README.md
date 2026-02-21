@@ -44,15 +44,38 @@ This SOC implementation isn't just a logging sink; it actively leverages multipl
 
 Every single phase of this infrastructure has been meticulously documented. If you want to replicate this setup, the operational manuals are included here:
 
-- [Wazuh Core Configuration](docs/Wazuh_configuration.pdf)
-- [Suricata IDS Integration](docs/Suricata_integration.pdf)
-- [pfSense Edge Configuration](docs/Pfsense_integration.pdf)
-- [VirusTotal API Enrichment](docs/VirusTotal_integration.pdf)
-- [FIM (File Integrity Monitoring)](docs/File_integrity_monitoring.pdf)
-- [Sysmon & Telemetry Pipeline](docs/Logs&Sysmon_ingestion.pdf)
-- [Active Threat: Brute Force Simulation](docs/SSH_Brute_Force.pdf)
+- [Wazuh Core Configuration](docs/Wazuh_configuration.md)
+- [Suricata IDS Integration](docs/Suricata_integration.md)
+- [pfSense Edge Configuration](docs/Pfsense_integration.md)
+- [VirusTotal API Enrichment](docs/VirusTotal_integration.md)
+- [FIM (File Integrity Monitoring)](docs/File_integrity_monitoring.md)
+- [Sysmon & Telemetry Pipeline](docs/Logs_Sysmon_ingestion.md)
+- [Active Threat: Brute Force Simulation](docs/SSH_Brute_Force.md)
 
-> **[Download the Master Compilation PDF](docs/Soc_Home_LAB.pdf)**
+---
+
+## 🚀 Phase 2: Automation & Detection Engineering
+
+The lab has been evolved into an automated "Detection Engineering" platform.
+
+### 1. Infrastructure-as-Code (Ansible)
+
+- **Automatic Deployment:** Use the `ansible/` playbooks to deploy Wazuh agents and Sysmon configurations across new endpoints with a single command.
+- **Config-as-Code:** Telemetry settings are versioned in [ansible/playbook.yml](ansible/playbook.yml).
+
+### 2. Detection-as-Code (Wazuh Rules)
+
+- **Custom Ruleset:** Custom high-fidelity detections are stored in [rules/wazuh/](rules/wazuh/).
+- **Version Control:** Manage and audit your detections via Git, following industry best practices.
+
+### 3. Automated Attack Simulation
+
+- **Trigger Alerts:** Use the Python suite in [simulations/](simulations/) to programmatically trigger the custom detection rules and validate your SIEM pipeline.
+
+```bash
+# Example: Triggering a detection baseline
+python3 simulations/trigger_alerts.py
+```
 
 ## ⚠️ Engagement Rules
 
