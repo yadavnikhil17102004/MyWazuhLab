@@ -1,6 +1,51 @@
-# 🛡️ Enterprise SOC Intelligence Lab (Wazuh/pfSense/Suricata)
+# 🌌 MyWazuhLab: Enterprise SOC Intelligence Lab
 
-> _End-to-End deployment of a hyper-integrated Detection & Response architecture._
+> **State-of-the-Art Detection Engineering & Automated Threat Hunting**
+
+---
+
+## 🏛️ System Architecture
+
+```mermaid
+graph TD
+    subgraph "Perimeter Control"
+        pfSense["pfSense Firewall"] --> |"Inbound/Outbound Traffic"| WAN["Public Internet"]
+    end
+
+    subgraph "Internal Intelligence"
+        Suricata["Suricata IDS"] --> |"EVE JSON Logs"| WazuhMgr["Wazuh Manager (SIEM)"]
+        WazuhMgr --> |"Analysis & Alerting"| Indexer["Wazuh Indexer / Dashboard"]
+    end
+
+    subgraph "Endpoints & Telemetry"
+        WinAgent["Windows Endpoint"] --> |"Sysmon + Wazuh Agent"| WazuhMgr
+        VT["VirusTotal API"] <--> |"Threat Enrichment"| WazuhMgr
+    end
+
+    pfSense -.-> |"Syslog"| WazuhMgr
+```
+
+---
+
+## 🧬 Tactical Workflow: Detection-as-Code
+
+This lab follows a continuous improvement cycle for security operations.
+
+```mermaid
+sequenceDiagram
+    participant AD as Attack Simulation (Python)
+    participant EP as Windows Endpoint (Sysmon)
+    participant WZ as Wazuh SIEM
+    participant Git as GitHub (Ruleset)
+
+    AD->>EP: Trigger Offensive TTP (e.g. Discovery)
+    EP->>WZ: Ship High-Fidelity Logs
+    Git->>WZ: Deploy Custom Rules
+    WZ->>WZ: Pattern Match & Alert
+    Note right of WZ: SOC Alert Triggered!
+```
+
+---
 
 ## ⚡ What is this?
 
